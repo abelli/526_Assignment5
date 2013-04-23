@@ -37,7 +37,7 @@ namespace CIS726_Assignment2.Controllers
 
         //
         // GET: /ElectiveLists/
-
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index(string sortOrder, int? page)
         {
             int pageSize = 100;
@@ -100,7 +100,7 @@ namespace CIS726_Assignment2.Controllers
 
         //
         // GET: /ElectiveLists/Details/5
-
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Details(int id = 0)
         {
 
@@ -117,6 +117,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /ElectiveLists/Create
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create()
         {
             return View();
@@ -127,6 +128,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create(ElectiveList electivelist)
         {
             if (ModelState.IsValid)
@@ -142,6 +144,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /ElectiveLists/Edit/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(int id = 0)
         {
             ElectiveList electivelist = Request<ElectiveList>.GetItemByID(id, "A", "B");
@@ -159,6 +162,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(ElectiveList electivelist, IEnumerable<ElectiveListCourse> ElectiveListCourses)
         {
             if (ModelState.IsValid)
@@ -240,6 +244,7 @@ namespace CIS726_Assignment2.Controllers
         /// Mad props to http://ivanz.com/2011/06/16/editing-variable-length-reorderable-collections-in-asp-net-mvc-part-1/
         /// </summary>
         /// <returns></returns>
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult ElectiveListCourseRow(int id = 0)
         {
             if (id > 0)
@@ -260,6 +265,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /ElectiveLists/Delete/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Delete(int id = 0)
         {
             ElectiveList electivelist = Request<ElectiveList>.GetItemByID(id, "A", "B");
@@ -277,6 +283,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult DeleteConfirmed(int id)
         {
             Request<ElectiveList>.Delete(id, "A", "B");

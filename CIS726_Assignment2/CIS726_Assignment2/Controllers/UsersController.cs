@@ -38,6 +38,7 @@ namespace CIS726_Assignment2.Controllers
         // GET: /User/
 
         [Authorize(Roles="Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index(string sortOrder, int? page)
         {
             int pageSize = 100;
@@ -101,6 +102,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /User/Details/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Details(int id = 0)
         {
             User user = Request<User>.GetAuthItemById(id, "A", "B");
@@ -116,6 +118,7 @@ namespace CIS726_Assignment2.Controllers
         // GET: /User/Create
 
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create()
         {
             return View();
@@ -126,6 +129,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create(RegisterModel model)
         {
             if (ModelState.IsValid)
@@ -151,6 +155,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /User/Edit/5
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(int id = 0)
         {
             UserEdit user = null;
@@ -180,6 +185,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(UserEdit user, string[] userRoleCheck)
         {
             if (ModelState.IsValid)
@@ -231,6 +237,7 @@ namespace CIS726_Assignment2.Controllers
         // GET: /User/Delete/5
 
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Delete(int id = 0)
         {
             User user = Request<User>.GetAuthItemById(id, "A", "B");
@@ -245,6 +252,7 @@ namespace CIS726_Assignment2.Controllers
         // POST: /User/Delete/5
         [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult DeleteConfirmed(int id)
         {
             User user = Request<User>.GetAuthItemById(id, "A", "B");

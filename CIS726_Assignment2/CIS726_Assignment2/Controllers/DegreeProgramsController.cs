@@ -38,7 +38,7 @@ namespace CIS726_Assignment2.Controllers
 
         //
         // GET: /DegreePrograms/
-
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index(string sortOrder, int? page)
         {
             int pageSize = 100;
@@ -101,7 +101,7 @@ namespace CIS726_Assignment2.Controllers
 
         //
         // GET: /DegreePrograms/Details/5
-
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Details(int id = 0)
         {
 
@@ -118,7 +118,7 @@ namespace CIS726_Assignment2.Controllers
 
         //
         // GET: /DegreePrograms/Create
-
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create()
         {
             return View();
@@ -128,6 +128,7 @@ namespace CIS726_Assignment2.Controllers
         // POST: /DegreePrograms/Create
 
         [HttpPost]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create(DegreeProgram degreeprogram)
         {
             if (ModelState.IsValid)
@@ -143,6 +144,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /DegreePrograms/Edit/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(int id = 0)
         {
 
@@ -161,6 +163,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(DegreeProgram degreeprogram, IEnumerable<RequiredCourse> RequiredCourses, IEnumerable<ElectiveCourse> ElectiveCourses)
         {
             if (ModelState.IsValid)
@@ -300,6 +303,7 @@ namespace CIS726_Assignment2.Controllers
         /// Mad props to http://ivanz.com/2011/06/16/editing-variable-length-reorderable-collections-in-asp-net-mvc-part-1/
         /// </summary>
         /// <returns></returns>
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult RequiredCourseRow(int id = 0)
         {
             if (id > 0)
@@ -324,6 +328,7 @@ namespace CIS726_Assignment2.Controllers
         /// Mad props to http://ivanz.com/2011/06/16/editing-variable-length-reorderable-collections-in-asp-net-mvc-part-1/
         /// </summary>
         /// <returns></returns>
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult ElectiveCourseRow(int id = 0)
         {
             if (id > 0)
@@ -346,6 +351,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /DegreePrograms/Delete/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Delete(int id = 0)
         {
 
@@ -365,6 +371,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult DeleteConfirmed(int id)
         {
             Request<DegreeProgram>.Delete(id, "A", "B");

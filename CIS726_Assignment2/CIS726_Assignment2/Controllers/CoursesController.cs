@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using MessageParser.Models;
 using PagedList;
 using CIS726_Assignment2.Repositories;
@@ -42,7 +43,7 @@ namespace CIS726_Assignment2.Controllers
          * Paging from 
          * http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
          */
-
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index(string sortOrder, int? page, string filterString)
         {
             int pageSize = 100;
@@ -311,6 +312,7 @@ namespace CIS726_Assignment2.Controllers
         /// <param name="filtered"></param>
         /// <returns></returns>
         [HttpPost]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index(string sortOrder, int? page, string prefixes, bool? ugrad, bool? grad, string minNumber, string maxNumber, string minHours, string maxHours, string filtered)
         {
             String filter = "";
@@ -412,6 +414,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create(Course course)
         {
             if (ModelState.IsValid)
@@ -425,6 +428,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Courses/Edit/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(int id = 0)
         {
             Course course = Request<Course>.GetItemByID(id, "A", "B");
@@ -440,6 +444,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(Course course, IEnumerable<PrerequisiteCourse> PrerequisiteCourses)
         {
             if (ModelState.IsValid)
@@ -525,6 +530,7 @@ namespace CIS726_Assignment2.Controllers
         /// Mad props to http://ivanz.com/2011/06/16/editing-variable-length-reorderable-collections-in-asp-net-mvc-part-1/
         /// </summary>
         /// <returns></returns>
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult PrerequisiteCourseRow(int id = 0)
         {
             if (id > 0)
@@ -545,6 +551,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Courses/Delete/5
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Delete(int id = 0)
         {
             Course course = Request<Course>.GetItemByID(id, "A", "B");
@@ -560,6 +567,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Administrator")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult DeleteConfirmed(int id)
         {
 

@@ -47,6 +47,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Plans/
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index(string sortOrder, int? page)
         {
             int pageSize = 100;
@@ -130,6 +131,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Plans/Details/5
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Details(int id = 0)
         {
 
@@ -155,6 +157,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Plans/Create
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create()
         {
             ViewBag.degreeProgramID = new SelectList(Request<DegreeProgram>.GetAll("A", "B").AsEnumerable(), "ID", "degreeProgramName");
@@ -177,6 +180,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create(Plan plan)
         {
             if (ModelState.IsValid)
@@ -206,6 +210,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Plans/Edit/5
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(int id = 0)
         {
 
@@ -242,6 +247,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost]
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Edit(Plan plan)
         {
             if (ModelState.IsValid)
@@ -325,6 +331,7 @@ namespace CIS726_Assignment2.Controllers
         //
         // GET: /Plans/Delete/5
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Delete(int id = 0)
         {
 
@@ -350,6 +357,7 @@ namespace CIS726_Assignment2.Controllers
 
         [HttpPost, ActionName("Delete")]
         [Authorize]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult DeleteConfirmed(int id)
         {
             Plan plan = Request<Plan>.GetItemByID(id, "A", "B");
